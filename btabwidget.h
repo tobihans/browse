@@ -16,6 +16,7 @@ public:
 private:
 
 signals:
+    void newWindowRequested();
 };
 
 #endif // BTABWIDGET_H

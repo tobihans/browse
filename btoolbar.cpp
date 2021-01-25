@@ -37,13 +37,12 @@ BToolBar::BToolBar(QWidget *parent) : QToolBar(parent)
     });
 
     urlField = new QLineEdit;
+    urlField->setStyleSheet("QLineEdit { qproperty-cursorPosition: 0; }");
     urlFieldAction = new QAction(QPixmap("icons/goto.png"), "Go to given url");
-    urlFieldAction->setShortcut(Qt::Key_Enter);
+    urlFieldAction->setShortcut(/*Qt::Key_Enter*/tr("Ctrl+G"));
     connect(urlFieldAction, &QAction::triggered, [this](){
         if (!this->urlField->text().isEmpty())
             emit goToUrl(QUrl(this->urlField->text()));
-            QMessageBox msg;
-            msg.exec();
     });
     urlField->addAction(urlFieldAction, QLineEdit::TrailingPosition);
     this->addWidget(urlField);
@@ -55,4 +54,9 @@ BToolBar::BToolBar(QWidget *parent) : QToolBar(parent)
     connect(menu, &QAction::triggered, [this](){
         emit showMenu();
     });
+}
+
+void BToolBar::setUrl(QUrl url)
+{
+    urlField->setText(url.toString());
 }

@@ -13,6 +13,7 @@ class BToolBar : public QToolBar
     Q_OBJECT
 public:
     BToolBar(QWidget *parent = nullptr);
+    void setUrl(QUrl url);
 private:
     QAction *previous;
     QAction *next;

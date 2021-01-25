@@ -10,7 +10,16 @@
 
 BWindow::BWindow(QWidget *parent) : QMainWindow(parent)
 {
+    this->setMinimumSize(450, 550);
     sharedToolBar = new BToolBar;
     tabs = new BTabWidget(this);
+    connect(tabs, &QTabWidget::tabCloseRequested, [this](int i){
+        if (this->tabs->count() == 1)
+            this->close();
+        this->tabs->removeTab(i);
+    });
+    connect(tabs, &BTabWidget::newWindowRequested, [this](){
+        emit newWindow();
+    });
     setCentralWidget(tabs);
 }

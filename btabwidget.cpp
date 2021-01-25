@@ -10,7 +10,7 @@ BTabWidget::BTabWidget(QWidget *parent) :
     // First Tab
     auto *tabPage = new BTabPage;
     this->addTab(tabPage, "Home");
-    auto *tabPage1 = new BTabPage;
-    this->addTab(tabPage1, "Hom22e");
+    connect(tabPage, &BTabPage::newWindowRequested, [this](){
+        emit newWindowRequested();
+    });
 }
-
