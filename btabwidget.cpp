@@ -13,4 +13,7 @@ BTabWidget::BTabWidget(QWidget *parent) :
     connect(tabPage, &BTabPage::newWindowRequested, [this](){
         emit newWindowRequested();
     });
+    connect(tabPage, &BTabPage::changeIcon, [this, tabPage](QIcon icon){
+        setTabIcon(indexOf(tabPage), icon);
+    });
 }

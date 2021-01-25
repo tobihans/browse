@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWebEngineView>
 #include <QProgressBar>
+#include <QMenu>
 #include "btoolbar.h"
 
 class BTabPage : public QMainWindow
@@ -21,8 +22,10 @@ private:
     QWebEngineView *view;
     QProgressBar *progressBar;
     BToolBar *toolBar;
+//    QMenu *globalMenu;
 signals:
     void newWindowRequested();
+    void changeIcon(QIcon icon);
 };
 
 #endif // BTABPAGE_H

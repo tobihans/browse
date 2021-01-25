@@ -3,6 +3,7 @@
 #include <QPixmap>
 #include <QUrl>
 #include <QMessageBox>
+#include <QMenu>
 
 BToolBar::BToolBar(QWidget *parent) : QToolBar(parent)
 {
@@ -38,8 +39,12 @@ BToolBar::BToolBar(QWidget *parent) : QToolBar(parent)
 
     urlField = new QLineEdit;
     urlField->setStyleSheet("QLineEdit { qproperty-cursorPosition: 0; }");
+    connect(urlField, &QLineEdit::editingFinished, [this](){
+       if (this->urlField->hasFocus())
+           if (!this->urlField->text().isEmpty())
+               emit goToUrl(QUrl(this->urlField->text()));
+    });
     urlFieldAction = new QAction(QPixmap("icons/goto.png"), "Go to given url");
-    urlFieldAction->setShortcut(/*Qt::Key_Enter*/tr("Ctrl+G"));
     connect(urlFieldAction, &QAction::triggered, [this](){
         if (!this->urlField->text().isEmpty())
             emit goToUrl(QUrl(this->urlField->text()));

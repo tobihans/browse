@@ -10,6 +10,7 @@
 
 BWindow::BWindow(QWidget *parent) : QMainWindow(parent)
 {
+    this->setWindowFlag(Qt::CustomizeWindowHint);
     this->setMinimumSize(450, 550);
     sharedToolBar = new BToolBar;
     tabs = new BTabWidget(this);
