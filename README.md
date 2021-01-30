@@ -1,4 +1,5 @@
 # browse
+___Small browser in C++ with Qt5___
 ## Setup
 ```bash
 git clone https://github.com/tobihans/browse.git
